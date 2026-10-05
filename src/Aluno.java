@@ -1,29 +1,30 @@
 import java.time.LocalDate;
+import java.util.List;
 
 public class Aluno extends Academia  implements Consulta {
     //atributos
 
     private String objetivo;
-    private String matricula;
+    
 
 
    
      
-    public Aluno(String nome, LocalDate dat_nascimento, String telefone, String objetivo, String matricula) {
+    public Aluno(String nome, LocalDate dat_nascimento, String telefone, String objetivo, String registro) {
         
-        super(nome, dat_nascimento, telefone);
+        super(nome, dat_nascimento, telefone,registro);
+        
+        if (objetivo == null || objetivo.isBlank()) {
+            throw new IllegalStateException("adicione corretamente seu objetivo");
+            
+        }
         this.objetivo = objetivo;
-        this.matricula = matricula;
-        
-    }
-    //getter
-    public String getMatricula(){
-    return matricula;
-}
 
+    }
+   
 	@Override
 	public void exibir_dados() {
-        IO.println(String.format("nome: " + getNome() + "%n telefone: " + getTelefone() + "%n identidade da matricula: " + matricula +"%n resultado esperado: " + objetivo ));
+        IO.println(String.format("nome: " + getNome() + "%n telefone: " + getTelefone() + "%n identidade do registro: " + getRegistro() +"%n resultado esperado: " + objetivo ));
 	
 		
 	}
@@ -39,9 +40,10 @@ public class Aluno extends Academia  implements Consulta {
     public String getObjetivo(){
     return objetivo;
 }
-
+  
 
     //adicionar algo pra validar matricula de aluno;
 
     
-}
+
+

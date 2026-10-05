@@ -2,8 +2,8 @@ public class Exercicio implements Consulta{
 
     private String grupoMuscular;
     private String nome_exercicio;
-    private int series;
-    private int repeticoes;
+    private String series;
+    private String repeticoes;
     private float carga;
 
 
@@ -25,33 +25,27 @@ public class Exercicio implements Consulta{
 
     }
 
+    public String getExercicio(){
+    return nome_exercicio;
+}
 
-
-    public void alterarSerie(String grupoMuscular) {
-        this.grupoMuscular = grupoMuscular;
+    public void setGrupoMuscular(String grupoMuscular) {
+        if (grupoMuscular.isBlank()) {
+            throw new IllegalStateException("informe o grupo corretamente");
+        }
+        this.grupoMuscular = grupoMuscular.trim();
     }
 
-
-
-    public void alterarRepeticao(String nome_exercicio) {
-        this.nome_exercicio = nome_exercicio;
+    public void setRepeticao(String repeticao) {
+        this.repeticoes = repeticao;
     }
 
-
-
-    public void alterarSerie(int series) {
+    public void setSerie(int series) {
         this.series = series;
     }
 
 
-
-    public void alterarRepeticao(int repeticoes) {
-        this.repeticoes = repeticoes;
-    }
-
-
-
-    public void alterarCarga(float carga) {
+    public void setCarga(float carga) {
         this.carga = carga;
     }
 

@@ -16,7 +16,19 @@ public class Treino implements Consulta {
         this.listaDeExercicios = new ArrayList<>(); 
     }
 
-    
+    public Exercicio getExercice(){
+        Exercicio x = null;
+        if (listaDeExercicios.isEmpty()) {
+                IO.println("inexistente");
+            }
+        for(Exercicio i : listaDeExercicios ){
+            
+            x = i;
+        }
+        return x;
+    }
+
+
     public void adicionarExercicio(Exercicio ex) {
         if (listaDeExercicios.size() < 6) {
             listaDeExercicios.add(ex);
@@ -28,6 +40,10 @@ public class Treino implements Consulta {
 
     // Método para remover exercício
     public void removerExercicio(Exercicio ex) {
+        if (ex.getExercicio().isBlank()) {
+            throw new IllegalStateException("informe o exercicio que exista");
+        }
+        
         listaDeExercicios.remove(ex);
     }
 
@@ -53,9 +69,10 @@ public class Treino implements Consulta {
         
         IO.println(cabecalho);
         IO.println("EXERCÍCIOS DA ROTINA:");
-        
+        for(Exercicio x : listaDeExercicios){
         if (listaDeExercicios.isEmpty()) {
             IO.println("Nenhum exercício cadastrado neste treino ainda.");
+        }
         } 
          IO.println("=============================");
     }

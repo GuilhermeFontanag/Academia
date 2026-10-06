@@ -5,40 +5,41 @@ public class Aluno extends Academia  implements Consulta {
     //atributos
 
     private String objetivo;
-    
 
 
-   
-     
-    public Aluno(String nome, LocalDate dat_nascimento, String telefone, String objetivo, String registro) {
-        
-        super(nome, dat_nascimento, telefone,registro);
-        
+    public Aluno(String nome, String dat_nascimento, String telefone, String objetivo, String registro) {
+
+        super(nome, dat_nascimento, telefone, registro);
+
         if (objetivo == null || objetivo.isBlank()) {
             throw new IllegalStateException("adicione corretamente seu objetivo");
-            
+
         }
         this.objetivo = objetivo;
 
     }
-   
-	@Override
-	public void exibir_dados() {
-        IO.println(String.format("nome: " + getNome() + "%n telefone: " + getTelefone() + "%n identidade do registro: " + getRegistro() +"%n resultado esperado: " + objetivo ));
-	
-		
-	}
 
-	@Override
-	public void realizarCheckIn() {
+    @Override
+    public void exibir_dados() {
+        System.out.println("Nome: " + getNome() +
+                " %n Telefone: " + getTelefone() +
+                " %n Registro do aluno:  " + getRegistro() +
+                " %n Objetivo: " + objetivo);
+
+    }
+
+    @Override
+    public void realizarCheckIn() {
         if (getStatus() == false) {
             setStatus(true);
             IO.println("bem vindo a academia");
         }
-	}
+    }
+
     //getter
-    public String getObjetivo(){
-    return objetivo;
+    public String getObjetivo() {
+        return objetivo;
+    }
 }
   
 

@@ -4,11 +4,11 @@ public class Exercicio implements Consulta{
     private String nome_exercicio;
     private String series;
     private String repeticoes;
-    private float carga;
+    private String carga;
 
 
 
-    public Exercicio(String grupoMuscular, String nome_exercicio, int series, int repeticoes, float carga) {
+    public Exercicio(String grupoMuscular, String nome_exercicio, String series, String repeticoes, String carga) {
         this.grupoMuscular = grupoMuscular;
         this.nome_exercicio = nome_exercicio;
         this.series = series;
@@ -40,12 +40,12 @@ public class Exercicio implements Consulta{
         this.repeticoes = repeticao;
     }
 
-    public void setSerie(int series) {
+    public void setSerie(String series) {
         this.series = series;
     }
 
 
-    public void setCarga(float carga) {
+    public void setCarga(String carga) {
         this.carga = carga;
     }
 

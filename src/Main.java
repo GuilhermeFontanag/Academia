@@ -16,14 +16,14 @@ public class Main {
         // Loop principal do sistema
         while (opcao != 9) {
             IO.println(String.format(" %n === SISTEMA DE GERENCIAMENTO DE ACADEMIA === %n " + 
-            "1. Cadastrar Aluno\n" + 
-            "2. Cadastrar Professor\n" +
-            "3. Cadastrar Exercício\n" + 
-            "4. Criar Novo Treino\n"+ 
-            "5. Gerenciar Treino (Adicionar/Remover Exercícios)\n" + 
-            "6. Consultar Treino de um Aluno\n" + 
-            "7. Exibir Relatório Geral do Sistema\n" + 
-            "8. Enviar Notificação Geral\n" + 
+            "1. Cadastrar Aluno %n " +
+            "2. Cadastrar Professor %n" +
+            "3. Cadastrar Exercício %n" +
+            "4. Criar Novo Treino %n"+
+            "5. Gerenciar Treino (Adicionar/Remover Exercícios) %n" +
+            "6. Consultar Treino de um Aluno %n" +
+            "7. Exibir Relatório Geral do Sistema %n" +
+            "8. Enviar Notificação Geral %n" +
             "9. Sair"));
             
             try {
@@ -37,12 +37,12 @@ public class Main {
                 case 1: {
                     IO.println("\n--- CADASTRAR ALUNO ---");
                     String nomeAluno = IO.readln("Nome: ");
-                    String matricula = IO.readln("Matrícula: ");
+                    String matricula = IO.readln("Matrícula (6 digitos): ");
                     String objetivo = IO.readln("Objetivo (ex: Hipertrofia, Emagrecimento): ");
                     String telefone = IO.readln("Telefone (11 digitos): ");
-                    LocalDate nascAluno = LocalDate.parse(IO.readln("Data de nascimento (YYYY-MM-DD): "));
+                    String idadeAluno = IO.readln("Idade: ");
 
-                    Aluno aluno = new Aluno(nomeAluno, nascAluno, telefone, objetivo, matricula);
+                    Aluno aluno = new Aluno(nomeAluno, idadeAluno, telefone, objetivo, matricula);
                     alunos.add(aluno);
                     IO.println("Aluno cadastrado com sucesso!");
                     break;
@@ -51,12 +51,12 @@ public class Main {
                 case 2: {
                     IO.println("\n--- CADASTRAR PROFESSOR ---");
                     String nomeProf = IO.readln("Nome: ");
-                    String registro = IO.readln("Registro CREF: ");
+                    String registro = IO.readln("Registro(6 digitos): ");
                     String teleProf = IO.readln("Telefone (11 digitos): ");
                     String especialidade = IO.readln("Especialidade: ");
-                    LocalDate nascProf = LocalDate.parse(IO.readln("Data de nascimento (YYYY-MM-DD): "));
+                    String idadeProf = IO.readln("Idade: ");
                     
-                    Professor professor = new Professor(nomeProf, nascProf, teleProf, especialidade, registro);
+                    Professor professor = new Professor(nomeProf, idadeProf, teleProf, especialidade, registro);
                     professores.add(professor);
                     IO.println("Professor cadastrado com sucesso!");
                     break;
@@ -66,9 +66,9 @@ public class Main {
                     IO.println("\n--- CADASTRAR EXERCÍCIO ---");
                     String nomeEx = IO.readln("Nome do Exercício: ");
                     String grupo = IO.readln("Grupo Muscular: ");
-                    int series = Integer.parseInt(IO.readln("Séries: "));
-                    int reps = Integer.parseInt(IO.readln("Repetições: "));
-                    float carga = Float.parseFloat(IO.readln("Carga (Kg): "));
+                    String series = IO.readln("Séries: ");
+                    String reps = IO.readln("Repetições: ");
+                    String carga = IO.readln("Carga (Kg): ");
                     
                     bancoDeExercicios.add(new Exercicio(grupo, nomeEx, series, reps, carga));
                     IO.println("Exercício adicionado ao banco!");
@@ -205,7 +205,7 @@ public class Main {
 
                                 switch (opcaoAlterar) {
                                     case 1: {
-                                        int novasSeries = Integer.parseInt(IO.readln("Nova quantidade de séries: "));
+                                        String novasSeries = IO.readln("Nova quantidade de séries: ");
                                         exAlterar.setSerie(novasSeries);
                                         IO.println("Séries alteradas com sucesso!");
                                         break;
@@ -218,7 +218,7 @@ public class Main {
                                         break;
                                     }
                                     case 3: {
-                                        float novaCarga = Float.parseFloat(IO.readln("Nova carga em Kg: "));
+                                        String novaCarga = IO.readln("Nova carga em Kg: ");
                                         exAlterar.setCarga(novaCarga);
                                         IO.println("Carga alterada com sucesso!");
                                         break;

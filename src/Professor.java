@@ -4,9 +4,9 @@ public class Professor extends Academia implements Consulta {
     private String especialidade;
     
 
-	public Professor(String nome, LocalDate dat_nascimento, String telefone, String especialidade, String registro) {
+	public Professor(String nome, String idade, String telefone, String especialidade, String registro) {
         
-        super(nome, dat_nascimento, telefone,registro);
+        super(nome, idade, telefone,registro);
         this.especialidade = especialidade;
         
     }
@@ -26,8 +26,10 @@ public class Professor extends Academia implements Consulta {
 
     @Override
     public void exibir_dados() {
-              IO.println(String.format("nome: " + getNome() + "%n telefone: " + getTelefone() + "%n  registro do professor: " + getRegistro() + "especialidade do professor: " + especialidade ));
-
+        System.out.println("Nome: " + getNome() +
+                " %n Telefone: " + getTelefone() +
+                " %n Registro do professor: " + getRegistro() +
+                "%n Especialidade do professor: " + especialidade);
     }
 
 

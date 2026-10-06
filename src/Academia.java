@@ -1,26 +1,27 @@
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public abstract class Academia{
     private String nome;
-    private LocalDate dat_nascimento;
+    private String idade ;
     private String telefone;
     private boolean status = false;
     private String registro;
 
     //metodo construtor
-    public Academia(String nome, LocalDate dat_nascimento, String telefone, String registro){
+    public Academia(String nome, String idade, String telefone, String registro){
         
-        if (nome == null || nome.isBlank()) {
+        if (nome.isBlank() || nome == null) {
             throw new IllegalStateException("adicione nome por favor");
             
         }
-        
+        this.nome = nome;
 
-        if (dat_nascimento.isAfter(LocalDate.now()) || dat_nascimento == null) {
-            throw new IllegalStateException("adicione uma data futura");
-            }
-            this.dat_nascimento = dat_nascimento;
-        
+        if (idade.isBlank() || idade  == null  ) {
+            throw new IllegalStateException("adicione uma idade valida");
+        }
+            this.idade = idade;
+
         if (telefone == null || telefone.isBlank() || telefone.length() != 11) {
             throw new IllegalArgumentException("Telefone inválido");
         }
@@ -38,8 +39,8 @@ public abstract class Academia{
     return nome;
 }
 
-    public LocalDate getDat(){
-        return dat_nascimento;
+    public String getDat(){
+        return idade;
     }
 
     public String getTelefone(){
@@ -59,8 +60,8 @@ public abstract class Academia{
         this.nome = nome;
     }
 
-    public void setDat(LocalDate dat_nascimento){
-        this.dat_nascimento = dat_nascimento;
+    public void setDat(String idade){
+        this.idade = idade;
     }
 
     public void setTelefone(String telefone){

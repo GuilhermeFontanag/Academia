@@ -9,20 +9,42 @@ public class Exercicio implements Consulta{
 
 
     public Exercicio(String grupoMuscular, String nome_exercicio, String series, String repeticoes, String carga) {
-        this.grupoMuscular = grupoMuscular;
+        if (nome_exercicio.isBlank() || nome_exercicio == null) {
+            throw new IllegalStateException("adicione nome por favor");
+        }
         this.nome_exercicio = nome_exercicio;
+        if (grupoMuscular.isBlank() || grupoMuscular == null) {
+            throw new IllegalStateException("adicione nome por favor");
+        }
+        this.grupoMuscular = grupoMuscular;
+
+        if (series.isBlank() || series == null) {
+            throw new IllegalStateException("adicione nome por favor");
+
+        }
         this.series = series;
+
+        if (repeticoes.isBlank() || repeticoes == null) {
+            throw new IllegalStateException("adicione nome por favor");
+
+        }
         this.repeticoes = repeticoes;
+
+        if (carga.isBlank() || carga == null) {
+            throw new IllegalStateException("adicione nome por favor");
+
+        }
         this.carga = carga;
     }
 
 
 
     @Override
-    public void exibir_dados() {
+    public String exibir_dados() {
 
-    IO.println(String.format("Exercio: " + nome_exercicio + "(" + grupoMuscular + ")%n" +"series: " + series+ "%n repetição" + repeticoes + "%n carga" + carga ));
+    IO.println(String.format("Exercio: " + nome_exercicio + "(" + grupoMuscular + ") %n" +"series: " + series+ "%n repetição:" + repeticoes + "%n carga:" + carga ));
 
+        return null;
     }
 
     public String getExercicio(){
@@ -50,12 +72,23 @@ public class Exercicio implements Consulta{
     }
 
 
+    public String getNome_exercicio() {
+        return nome_exercicio;
+    }
 
-  
+    public String getSeries() {
+        return series;
+    }
 
+    public String getRepeticoes() {
+        return repeticoes;
+    }
 
+    public String getCarga() {
+        return carga;
+    }
 
-
-
-
+    public String getGrupoMuscular() {
+        return grupoMuscular;
+    }
 }

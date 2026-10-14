@@ -1,6 +1,3 @@
-import java.time.LocalDate;
-import java.util.List;
-
 public class Aluno extends Academia  implements Consulta {
     //atributos
 
@@ -20,12 +17,13 @@ public class Aluno extends Academia  implements Consulta {
     }
 
     @Override
-    public void exibir_dados() {
-        System.out.println("Nome: " + getNome() +
+    public String exibir_dados() {
+        System.out.printf("Nome: " + getNome() +
                 " %n Telefone: " + getTelefone() +
                 " %n Registro do aluno:  " + getRegistro() +
                 " %n Objetivo: " + objetivo);
 
+        return null;
     }
 
     @Override

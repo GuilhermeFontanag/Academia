@@ -1,5 +1,5 @@
 public interface Consulta{
-    public void exibir_dados();
+    public String exibir_dados();
 
 
 

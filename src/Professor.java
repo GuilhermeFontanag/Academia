@@ -1,38 +1,35 @@
-import java.time.LocalDate;
 public class Professor extends Academia implements Consulta {
 
     private String especialidade;
-    
 
-	public Professor(String nome, String idade, String telefone, String especialidade, String registro) {
-        
-        super(nome, idade, telefone,registro);
-        this.especialidade = especialidade;
-        
+    public Professor(String nome, String idade, String telefone, String especialidade, String registro) {
+        super(nome, idade, telefone, registro);
+
+        if (especialidade == null || especialidade.isBlank()) {
+            throw new IllegalArgumentException("Adicione uma especialidade válida.");
+        }
+        this.especialidade = especialidade.trim();
     }
-
 
     @Override
     public void realizarCheckIn() {
-        if (getStatus() == false) {
+        if (!getStatus()) {
             setStatus(true);
-            IO.println("Ponto realizado");
+            IO.println("Ponto realizado com sucesso!");
         }
     }
 
-    //adicionar metodo para validar registro de professor
-
-
-
     @Override
-    public void exibir_dados() {
-        System.out.println("Nome: " + getNome() +
-                " %n Telefone: " + getTelefone() +
-                " %n Registro do professor: " + getRegistro() +
-                "%n Especialidade do professor: " + especialidade);
+    public String exibir_dados() {
+        String dados = String.format(
+                "Nome: %s%nTelefone: %s%nRegistro do Professor: %s%nEspecialidade: %s",
+                getNome(), getTelefone(), getRegistro(), especialidade
+        );
+        IO.println(dados);
+        return dados;
     }
 
-
-    
-    
+    public String getEspecialidade() {
+        return especialidade;
+    }
 }

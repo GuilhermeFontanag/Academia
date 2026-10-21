@@ -1,4 +1,9 @@
-public class Exercicio implements Consulta{
+package Treino;
+
+import Consulta.Consulta;
+
+
+public class Exercicio implements Consulta {
 
     private String grupoMuscular;
     private String nome_exercicio;

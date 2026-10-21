@@ -1,3 +1,9 @@
+package Treino;
+
+import Usuario.Aluno;
+import Usuario.Professor;
+import Consulta.Consulta;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,7 +17,7 @@ public class Treino implements Consulta {
     // Construtor
     public Treino(Aluno aluno, Professor professor) {
         if (aluno == null || professor == null) {
-            throw new IllegalArgumentException("Aluno e Professor devem ser válidos.");
+            throw new IllegalArgumentException("Usuario.Aluno e Usuario.Professor devem ser válidos.");
         }
         this.aluno = aluno;
         this.professor = professor;
@@ -59,8 +65,8 @@ public class Treino implements Consulta {
     public String exibir_dados() {
         String cabecalho = String.format(
                 "%n====== FICHA DE TREINO ======%n" +
-                        "Aluno: %s | Objetivo: %s%n" +
-                        "Professor Responsável: %s%n" +
+                        "Usuario.Aluno: %s | Objetivo: %s%n" +
+                        "Usuario.Professor Responsável: %s%n" +
                         "-----------------------------",
                 aluno.getNome(), aluno.getObjetivo(), professor.getNome()
         );

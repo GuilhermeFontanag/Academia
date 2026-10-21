@@ -1,4 +1,9 @@
-public class Aluno extends Academia  implements Consulta {
+package Usuario;
+
+import Academia.Academia;
+import Consulta.Consulta;
+
+public class Aluno extends Academia implements Consulta {
     //atributos
 
     private String objetivo;

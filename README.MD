@@ -1,17 +1,17 @@
 
-# Sistema de Gerenciamento de Academia
-Um sistema em Java desenvolvido para gerenciar alunos, professores, banco de exercícios e montagem de fichas de treino de uma academia diretamente via linha de comando (terminal).
+# Sistema de Gerenciamento de Academia.Academia
+Um sistema em Java desenvolvido para gerenciar alunos, professores, banco de exercícios e montagem de fichas de Treino de uma academia diretamente via linha de comando (terminal).
 
 ## Tecnologias Utilizadas:
 * Linguagem: Java
 * Paradigma: Programação Orientada a Objetos (POO)
 ### Conceitos de POO aplicados:
 
-* Herança: As classes Aluno e Professor estendem a classe abstrata Academia.
+* Herança: As classes Usuario.Aluno e Usuario.Professor estendem a classe abstrata Academia.Academia.
 
-* Polimorfismo e Interfaces: Implementação da interface Consulta para uniformizar a exibição dos dados.
+* Polimorfismo e Interfaces: Implementação da interface Consulta.Consulta para uniformizar a exibição dos dados.
 
-* Abstração: Classe abstrata Academia que consolida atributos e comportamentos base.
+* Abstração: Classe abstrata Academia.Academia que consolida atributos e comportamentos base.
 
 * Encapsulamento: Uso de modificadores de acesso privados com métodos de acesso (getters e setters) e validação nos construtores.
  
@@ -28,23 +28,23 @@ Um sistema em Java desenvolvido para gerenciar alunos, professores, banco de exe
 
  ## Estrutura do Projeto
 
-* **Academia.java:** Classe abstrata base contendo informações genéricas (nome, idade, telefone, registro e status de check-in).
+**Academia.Academia.java:** Classe abstrata base contendo informações genéricas (nome, idade, telefone, registro e status de check-in).
 
-* **Aluno.java:** Subclasse de Academia referente aos alunos e seus objetivos de treino.
+**Usuario.Aluno.java:** Subclasse de Academia.Academia referente aos alunos e seus objetivos de Treino.
 
-* **Professor.java:** Subclasse de Academia contendo a especialidade do profissional.
+**Usuario.Professor.java:** Subclasse de Academia.Academia contendo a especialidade do profissional.
 
-* **Exercicio.java:** Classe contendo informações detalhadas do exercício (grupo muscular, séries, repetições e carga).
+**Treino.Exercicio.java:** Classe contendo informações detalhadas do exercício (grupo muscular, séries, repetições e carga).
 
-* **Treino.java:** Vincula um aluno a um professor responsável e gerencia uma lista com o limite de até 6 exercícios.
+**Treino.Treino.java:** Vincula um aluno a um professor responsável e gerencia uma lista com o limite de até 6 exercícios.
 
-* **Consulta.java:** Interface que estabelece o contrato do método exibir_dados().
+**Consulta.Consulta.java:** Interface que estabelece o contrato do método exibir_dados().
 
-* **Main.java:** Classe principal responsável por inicializar a aplicação e gerenciar a navegação do menu interativo.
+**Academia.Main.java:** Classe principal responsável por inicializar a aplicação e gerenciar a navegação do menu interativo.
 
 ## Como Instalar e Executar no Terminal
 1. Organização dos Arquivos
-Certifique-se de que todos os arquivos .java (Academia.java, Aluno.java, Professor.java, Exercicio.java, Treino.java, Consulta.java, Main.java e a classe utilitária de I/O IO.java) estejam salvos no mesmo diretório.
+Certifique-se de que todos os arquivos .java (Academia.Academia.java, Usuario.Aluno.java, Usuario.Professor.java, Treino.Exercicio.java, Treino.Treino.java, Consulta.Consulta.java, Academia.Main.java e a classe utilitária de I/O IO.java) estejam salvos no mesmo diretório.
 
 2. Navegar até o Diretório
 Abra o terminal e navegue até a pasta onde os arquivos foram salvos:
@@ -55,8 +55,8 @@ javac *.java
 
 
 4. Executar a Aplicação
-Inicie a execução a partir da classe principal (Main):
-java Main
+Inicie a execução a partir da classe principal (Academia.Main):
+java Academia.Main
 
 
  ## Como Operar o Sistema
@@ -65,9 +65,9 @@ Ao iniciar a aplicação, o menu principal interativo será apresentado no termi
  1. Cadastrar Aluno 
  2. Cadastrar Professor 
  3. Cadastrar Exercício 
- 4. Criar Novo Treino 
- 5. Gerenciar Treino (Adicionar/Remover Exercícios) 
- 6. Consultar Treino de um Aluno 
+ 4. Criar Novo Treino.Treino 
+ 5. Gerenciar Treino.Treino (Adicionar/Remover Exercícios) 
+ 6. Consultar Treino.Treino de um Usuario.Aluno 
  7. Exibir Relatório Geral do Sistema 
  8. Enviar Notificação Geral 
  9. Sair

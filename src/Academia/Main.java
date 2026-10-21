@@ -10,26 +10,54 @@ import java.util.List;
 public class Main {
     public static void main(String[] args) {
 
-        // Listas em memória para armazenar os dados
         List<Aluno> alunos = new ArrayList<>();
         List<Professor> professores = new ArrayList<>();
         List<Exercicio> bancoDeExercicios = new ArrayList<>();
         List<Treino> treinos = new ArrayList<>();
+
+        Aluno aluno1 = new Aluno("João Silva", "25", "11999999999", "Hipertrofia", "123456");
+        Aluno aluno2 = new Aluno("Maria Souza", "30", "11888888888", "Emagrecimento", "654321");
+        alunos.add(aluno1);
+        alunos.add(aluno2);
+
+        Professor prof1 = new Professor("Carlos Mendes", "40", "11777777777", "Musculação", "110189");
+        Professor prof2 = new Professor("Ana Costa", "35", "11666666666", "Funcional", "456789");
+        professores.add(prof1);
+        professores.add(prof2);
+
+        Exercicio ex1 = new Exercicio("Peito", "Supino Reto", "4", "10", "60");
+        Exercicio ex2 = new Exercicio("Costas", "Puxada Frontal", "3", "12", "50");
+        Exercicio ex3 = new Exercicio("Pernas", "Agachamento Livre", "4", "8", "80");
+        bancoDeExercicios.add(ex1);
+        bancoDeExercicios.add(ex2);
+        bancoDeExercicios.add(ex3);
+
+        Treino treino1 = new Treino(aluno1, prof1);
+        treino1.adicionarExercicio(ex1); // Supino
+        treino1.adicionarExercicio(ex3); // Agachamento
+        treinos.add(treino1);
+
+        Treino treino2 = new Treino(aluno2, prof2);
+        treino2.adicionarExercicio(ex2); // Adiciona Puxada Frontal
+        treino2.adicionarExercicio(ex3); // Adiciona Agachamento
+        treinos.add(treino2);
+
+        // --------------------------------
 
         int opcao = 0;
 
         // Loop principal do sistema
         while (opcao != 9) {
             IO.println(String.format(" %n === SISTEMA DE GERENCIAMENTO DE ACADEMIA === %n " +
-            "1. Cadastrar Usuario.Aluno %n " +
-            "2. Cadastrar Usuario.Professor %n" +
-            "3. Cadastrar Exercício %n" +
-            "4. Criar Novo treino.Treino %n"+
-            "5. Gerenciar treino.Treino (Adicionar/Remover Exercícios) %n" +
-            "6. Consultar treino.Treino de um Usuario.Aluno %n" +
-            "7. Exibir Relatório Geral do Sistema %n" +
-            "8. Enviar Notificação Geral %n" +
-            "9. Sair"));
+                    "1. Cadastrar Aluno %n " +
+                    "2. Cadastrar Professor %n" +
+                    "3. Cadastrar Exercício %n" +
+                    "4. Criar Novo treino.Treino %n"+
+                    "5. Gerenciar Treino (Adicionar/Remover Exercícios) %n" +
+                    "6. Consultar Treino de um Aluno %n" +
+                    "7. Exibir Relatório Geral do Sistema %n" +
+                    "8. Enviar Notificação Geral %n" +
+                    "9. Sair"));
 
             try {
                 opcao = Integer.parseInt(IO.readln("Escolha uma opção: "));
@@ -47,9 +75,13 @@ public class Main {
                     String telefone = IO.readln("Telefone (11 digitos): ");
                     String idadeAluno = IO.readln("Idade: ");
 
-                    Aluno aluno = new Aluno(nomeAluno, idadeAluno, telefone, objetivo, matricula);
-                    alunos.add(aluno);
-                    IO.println("Usuario.Aluno cadastrado com sucesso!");
+                    try {
+                        Aluno aluno = new Aluno(nomeAluno, idadeAluno, telefone, objetivo, matricula);
+                        alunos.add(aluno);
+                        IO.println("Aluno cadastrado com sucesso!");
+                    } catch (Exception e) {
+                        IO.println("Aluno nao cadastrado, digite corretamente as informacoes: " + e.getMessage());
+                    }
                     break;
                 }
 
@@ -61,9 +93,13 @@ public class Main {
                     String especialidade = IO.readln("Especialidade: ");
                     String idadeProf = IO.readln("Idade: ");
 
-                    Professor professor = new Professor(nomeProf, idadeProf, teleProf, especialidade, registro);
-                    professores.add(professor);
-                    IO.println("Usuario.Professor cadastrado com sucesso!");
+                    try {
+                        Professor professor = new Professor(nomeProf, idadeProf, teleProf, especialidade, registro);
+                        professores.add(professor);
+                        IO.println("Usuario.Professor cadastrado com sucesso!");
+                    } catch (Exception e) {
+                        IO.println("Professor nao cadastrado, digite corretamente as informacoes: " + e.getMessage());
+                    }
                     break;
                 }
 
@@ -75,14 +111,19 @@ public class Main {
                     String reps = IO.readln("Repetições: ");
                     String carga = IO.readln("Carga (Kg): ");
 
-                    bancoDeExercicios.add(new Exercicio(grupo, nomeEx, series, reps, carga));
-                    IO.println("Exercício adicionado ao banco!");
+                    try {
+                        Exercicio exercicio = new Exercicio(grupo, nomeEx, series, reps, carga);
+                        bancoDeExercicios.add(exercicio);
+                        IO.println("Exercício adicionado ao banco!");
+                    } catch (Exception e) {
+                        IO.println("Exercício não cadastrado, digite corretamente as informações: " + e.getMessage());
+                    }
                     break;
                 }
 
                 case 4: {
                     IO.println("\n--- CRIAR NOVO TREINO ---");
-                    String matBusca = IO.readln("Digite a matrícula do Usuario.Aluno: ");
+                    String matBusca = IO.readln("Digite a matrícula doAluno: ");
                     String crefBusca = IO.readln("Digite a identificação do Usuario.Professor responsável: ");
 
                     Aluno alunoEncontrado = null;
@@ -106,7 +147,7 @@ public class Main {
                         treinos.add(treino);
                         IO.println("treino.Treino criado com sucesso! Use a opção 5 para adicionar exercícios.");
                     } else {
-                        IO.println("Erro: Usuario.Aluno ou Usuario.Professor não encontrados no sistema.");
+                        IO.println("Erro: Aluno ou Usuario.Professor não encontrados no sistema.");
                     }
                     break;
                 }
@@ -125,18 +166,24 @@ public class Main {
 
                     if (treinoAtual == null) {
                         IO.println("treino.Treino não encontrado para esta matrícula.");
-                        break; // Interrompe o case 5 se não achar o treino
+                        break;
                     }
 
                     String subMenu = String.format(
-                        "%n--- OPÇÕES DE GERENCIAMENTO ---%n" +
-                        "1. Adicionar Exercício ao treino.Treino%n" +
-                        "2. Remover Exercício do treino.Treino%n" +
-                        "3. Alterar Carga / Séries / Repetições de um Exercício"
+                            "%n--- OPÇÕES DE GERENCIAMENTO ---%n" +
+                                    "1. Adicionar Exercício ao treino.Treino%n" +
+                                    "2. Remover Exercício do treino.Treino%n" +
+                                    "3. Alterar Carga / Séries / Repetições de um Exercício"
                     );
                     IO.println(subMenu);
 
-                    int acao = Integer.parseInt(IO.readln("Escolha uma ação: "));
+                    int acao = 0;
+                    try {
+                        acao = Integer.parseInt(IO.readln("Escolha uma ação: "));
+                    } catch (NumberFormatException e) {
+                        IO.println("Ação inválida. Digite um número.");
+                        break;
+                    }
 
                     switch (acao) {
                         case 1: { // 1. ADICIONAR EXERCÍCIO AO TREINO
@@ -162,11 +209,12 @@ public class Main {
                             break;
                         }
 
-                        case 2: { // 2. REMOVER EXERCÍCIO DO PRÓPRIO TREINO
+                        case 2: {
                             String nomeExercicio = IO.readln("Nome do Exercício a remover do treino: ");
                             Exercicio exRemover = null;
 
-                            for (Exercicio ex : bancoDeExercicios) {
+
+                            for (Exercicio ex : treinoAtual.getListaDeExercicios()) {
                                 if (ex.getExercicio().equalsIgnoreCase(nomeExercicio)) {
                                     exRemover = ex;
                                     break;
@@ -176,21 +224,21 @@ public class Main {
                             if (exRemover != null) {
                                 try {
                                     treinoAtual.removerExercicio(exRemover);
-                                    IO.println("Exercício removido do treino com sucesso!");
                                 } catch (Exception e) {
                                     IO.println("Erro ao remover: " + e.getMessage());
                                 }
                             } else {
-                                IO.println("Exercício não encontrado.");
+                                IO.println("Exercício não encontrado neste treino.");
                             }
                             break;
                         }
 
-                        case 3: { // 3. ALTERAR CARGA, SÉRIES OU REPETIÇÕES
+                        case 3: {
                             String nomeEx = IO.readln("Nome do Exercício que deseja alterar: ");
                             Exercicio exAlterar = null;
 
-                            for (Exercicio ex : bancoDeExercicios) {
+
+                            for (Exercicio ex : treinoAtual.getListaDeExercicios()) {
                                 if (ex.getExercicio().equalsIgnoreCase(nomeEx)) {
                                     exAlterar = ex;
                                     break;
@@ -199,14 +247,21 @@ public class Main {
 
                             if (exAlterar != null) {
                                 String menuAlteracao = String.format(
-                                    "%n O que deseja alterar em '%s'?%n" +
-                                    "1. Alterar Séries%n" +
-                                    "2. Alterar Repetições%n" +
-                                    "3. Alterar Carga (Kg)"
+                                        "%n O que deseja alterar em '%s'?%n" +
+                                                "1. Alterar Séries%n" +
+                                                "2. Alterar Repetições%n" +
+                                                "3. Alterar Carga (Kg)",
+                                        exAlterar.getExercicio()
                                 );
 
                                 IO.println(menuAlteracao);
-                                int opcaoAlterar = Integer.parseInt(IO.readln("Escolha: "));
+                                int opcaoAlterar = 0;
+                                try {
+                                    opcaoAlterar = Integer.parseInt(IO.readln("Escolha: "));
+                                } catch (NumberFormatException e) {
+                                    IO.println("Opção de alteração inválida. Digite um número.");
+                                    break;
+                                }
 
                                 switch (opcaoAlterar) {
                                     case 1: {
@@ -216,7 +271,6 @@ public class Main {
                                         break;
                                     }
                                     case 2: {
-
                                         String novasReps = IO.readln("Nova quantidade de repetições: ");
                                         exAlterar.setRepeticao(novasReps);
                                         IO.println("Repetições alteradas com sucesso!");
@@ -234,7 +288,7 @@ public class Main {
                                     }
                                 }
                             } else {
-                                IO.println("Exercício não encontrado no banco de dados.");
+                                IO.println("Exercício não encontrado neste treino.");
                             }
                             break;
                         }
@@ -283,7 +337,6 @@ public class Main {
                 case 8: {
                     IO.println("\n--- ENVIAR NOTIFICAÇÃO GERAL ---");
 
-
                     if (alunos.isEmpty() && professores.isEmpty()) {
                         IO.println("Nenhum aluno ou professor registado no sistema para receber notificações.");
                         break;
@@ -297,14 +350,12 @@ public class Main {
 
                     IO.println("\n--- A enviar notificação... ---");
 
-
                     if (!alunos.isEmpty()) {
                         IO.println("\nNotificação enviada aos Alunos:");
                         for (Aluno a : alunos) {
                             IO.println("  [Usuario.Aluno: " + a.getNome() + " | Tel: " + a.getTelefone() + "]: " + mensagem);
                         }
                     }
-
 
                     if (!professores.isEmpty()) {
                         IO.println("\nNotificação enviada aos Professores:");

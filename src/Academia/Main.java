@@ -1,4 +1,9 @@
-import java.time.LocalDate;
+package Academia;
+
+import Usuario.*;
+import Treino.*;
+import Consulta.*;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,12 +21,12 @@ public class Main {
         // Loop principal do sistema
         while (opcao != 9) {
             IO.println(String.format(" %n === SISTEMA DE GERENCIAMENTO DE ACADEMIA === %n " +
-            "1. Cadastrar Aluno %n " +
-            "2. Cadastrar Professor %n" +
+            "1. Cadastrar Usuario.Aluno %n " +
+            "2. Cadastrar Usuario.Professor %n" +
             "3. Cadastrar Exercício %n" +
-            "4. Criar Novo Treino %n"+
-            "5. Gerenciar Treino (Adicionar/Remover Exercícios) %n" +
-            "6. Consultar Treino de um Aluno %n" +
+            "4. Criar Novo treino.Treino %n"+
+            "5. Gerenciar treino.Treino (Adicionar/Remover Exercícios) %n" +
+            "6. Consultar treino.Treino de um Usuario.Aluno %n" +
             "7. Exibir Relatório Geral do Sistema %n" +
             "8. Enviar Notificação Geral %n" +
             "9. Sair"));
@@ -44,7 +49,7 @@ public class Main {
 
                     Aluno aluno = new Aluno(nomeAluno, idadeAluno, telefone, objetivo, matricula);
                     alunos.add(aluno);
-                    IO.println("Aluno cadastrado com sucesso!");
+                    IO.println("Usuario.Aluno cadastrado com sucesso!");
                     break;
                 }
 
@@ -58,7 +63,7 @@ public class Main {
 
                     Professor professor = new Professor(nomeProf, idadeProf, teleProf, especialidade, registro);
                     professores.add(professor);
-                    IO.println("Professor cadastrado com sucesso!");
+                    IO.println("Usuario.Professor cadastrado com sucesso!");
                     break;
                 }
 
@@ -77,8 +82,8 @@ public class Main {
 
                 case 4: {
                     IO.println("\n--- CRIAR NOVO TREINO ---");
-                    String matBusca = IO.readln("Digite a matrícula do Aluno: ");
-                    String crefBusca = IO.readln("Digite a identificação do Professor responsável: ");
+                    String matBusca = IO.readln("Digite a matrícula do Usuario.Aluno: ");
+                    String crefBusca = IO.readln("Digite a identificação do Usuario.Professor responsável: ");
 
                     Aluno alunoEncontrado = null;
                     for (Aluno a : alunos) {
@@ -99,16 +104,16 @@ public class Main {
                     if (alunoEncontrado != null && profEncontrado != null) {
                         Treino treino = new Treino(alunoEncontrado, profEncontrado);
                         treinos.add(treino);
-                        IO.println("Treino criado com sucesso! Use a opção 5 para adicionar exercícios.");
+                        IO.println("treino.Treino criado com sucesso! Use a opção 5 para adicionar exercícios.");
                     } else {
-                        IO.println("Erro: Aluno ou Professor não encontrados no sistema.");
+                        IO.println("Erro: Usuario.Aluno ou Usuario.Professor não encontrados no sistema.");
                     }
                     break;
                 }
 
                 case 5: {
                     IO.println("\n--- GERENCIAR TREINO ---");
-                    String acharRegistro = IO.readln("Digite a matrícula do Aluno: ");
+                    String acharRegistro = IO.readln("Digite a matrícula do Usuario.Aluno: ");
 
                     Treino treinoAtual = null;
                     for (Treino a : treinos) {
@@ -119,14 +124,14 @@ public class Main {
                     }
 
                     if (treinoAtual == null) {
-                        IO.println("Treino não encontrado para esta matrícula.");
+                        IO.println("treino.Treino não encontrado para esta matrícula.");
                         break; // Interrompe o case 5 se não achar o treino
                     }
 
                     String subMenu = String.format(
                         "%n--- OPÇÕES DE GERENCIAMENTO ---%n" +
-                        "1. Adicionar Exercício ao Treino%n" +
-                        "2. Remover Exercício do Treino%n" +
+                        "1. Adicionar Exercício ao treino.Treino%n" +
+                        "2. Remover Exercício do treino.Treino%n" +
                         "3. Alterar Carga / Séries / Repetições de um Exercício"
                     );
                     IO.println(subMenu);
@@ -244,7 +249,7 @@ public class Main {
 
                 case 6: {
                     IO.println("\n--- CONSULTAR TREINO ---");
-                    String matConsulta = IO.readln("Digite a matrícula do Aluno: ");
+                    String matConsulta = IO.readln("Digite a matrícula do Usuario.Aluno: ");
                     boolean achouTreino = false;
 
                     for (Treino t : treinos) {
@@ -296,7 +301,7 @@ public class Main {
                     if (!alunos.isEmpty()) {
                         IO.println("\nNotificação enviada aos Alunos:");
                         for (Aluno a : alunos) {
-                            IO.println("  [Aluno: " + a.getNome() + " | Tel: " + a.getTelefone() + "]: " + mensagem);
+                            IO.println("  [Usuario.Aluno: " + a.getNome() + " | Tel: " + a.getTelefone() + "]: " + mensagem);
                         }
                     }
 

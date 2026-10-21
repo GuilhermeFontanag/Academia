@@ -1,3 +1,8 @@
+package Usuario;
+
+import Academia.Academia;
+import Consulta.Consulta;
+
 public class Professor extends Academia implements Consulta {
 
     private String especialidade;
@@ -22,7 +27,7 @@ public class Professor extends Academia implements Consulta {
     @Override
     public String exibir_dados() {
         String dados = String.format(
-                "Nome: %s%nTelefone: %s%nRegistro do Professor: %s%nEspecialidade: %s",
+                "Nome: %s%nTelefone: %s%nRegistro do Usuario.Professor: %s%nEspecialidade: %s",
                 getNome(), getTelefone(), getRegistro(), especialidade
         );
         IO.println(dados);

@@ -9,11 +9,11 @@ public abstract class Academia{
 
     //metodo construtor
     public Academia(String nome, String idade, String telefone, String registro){
-        
-        if (nome.isBlank() || nome == null) {
-            throw new IllegalStateException("adicione nome por favor");
-            
-        }
+
+            if (nome.isBlank() || nome == null) {
+                throw new IllegalStateException("adicione nome por favor");
+            }
+
         this.nome = nome;
 
         if (idade.isBlank() || idade  == null  ) {
